@@ -1,0 +1,14 @@
+{
+  "name": "bhaiya-g-garments",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Bhaiya G Readymade Garments - Full Stack E-commerce Website",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=apps/backend",
+    "dev:frontend": "npm run dev --workspace=apps/frontend",
+    "install:all": "npm install"
+  }
+}
