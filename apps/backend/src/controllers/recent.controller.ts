@@ -26,7 +26,7 @@ export const getRecentlyViewed = async (req: AuthRequest, res: Response) => {
       orderBy: { viewedAt: "desc" },
       take: 20,
     });
-    res.json(items.map((item) => item.product));
+    res.json(items.map((item: { product: { id: string; name: string; price: number; discount: number; images: { url: string }[]; category: { name: string } } }) => item.product));
   } catch (error) {
     res.status(500).json({ message: "Server error", error: (error as Error).message });
   }

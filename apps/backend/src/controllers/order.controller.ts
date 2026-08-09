@@ -18,7 +18,7 @@ export const createOrder = async (req: AuthRequest, res: Response) => {
       return res.status(400).json({ message: "Cart is empty" });
     }
 
-    const totalAmount = cart.items.reduce((sum, item) => {
+    const totalAmount = cart.items.reduce((sum: number, item: { product: { price: number; discount: number }; quantity: number }) => {
       const price = item.product.price * (1 - item.product.discount / 100);
       return sum + price * item.quantity;
     }, 0);
@@ -29,7 +29,7 @@ export const createOrder = async (req: AuthRequest, res: Response) => {
         totalAmount,
         address,
         items: {
-          create: cart.items.map((item) => ({
+          create: cart.items.map((item: { productId: string; quantity: number; product: { price: number; discount: number } }) => ({
             productId: item.productId,
             quantity: item.quantity,
             price: item.product.price * (1 - item.product.discount / 100),
