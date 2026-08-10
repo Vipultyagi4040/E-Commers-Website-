@@ -19,18 +19,11 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  process.env.CLIENT_URL,
-  "http://localhost:5173",
-  "http://localhost:3000",
-  "https://e-commers-website-frontend-rose.vercel.app",
-].filter((origin): origin is string => Boolean(origin));
-
 app.use(
   cors({
-    origin: allowedOrigins.length > 0 ? allowedOrigins : "*",
+    origin: (origin, callback) => callback(null, true),
     credentials: true,
-  } as any)
+  })
 );
 app.use(express.json());
 
