@@ -24,13 +24,13 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "https://e-commers-website-frontend-rose.vercel.app",
-].filter(Boolean);
+].filter((origin): origin is string => Boolean(origin));
 
 app.use(
   cors({
     origin: allowedOrigins.length > 0 ? allowedOrigins : "*",
     credentials: true,
-  })
+  } as any)
 );
 app.use(express.json());
 
